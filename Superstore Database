@@ -1,0 +1,14 @@
+#Order items in database by price
+SELECT * 
+FROM superstore
+order by price;
+
+#show the average rating of items in the appliances category
+Select AVG(average_rating)
+from superstore
+where category = "Appliances";
+
+#show the average price of items in the furnishings category
+select AVG(price)
+from superstore
+where category ="Furnishings";
