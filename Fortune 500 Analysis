@@ -1,0 +1,32 @@
+select * from fortune_companies
+;
+
+#Which companies have more than 20 paid time off days and an average employee tneure of more than 5 years?
+select company_name, paid_time_off_days, avg_employee_tenure from fortune_companies
+where paid_time_off_days>20
+and avg_employee_tenure>5
+;
+
+# What is the average number of employees for each industry with revenue greater than $200 billion?
+select industry, ROUND(avg(employees),1) as employee_avg
+from fortune_companies
+group by industry
+having revenue>200
+;
+
+# Which technology companies offers the most paid time off days?
+select company_name, max(paid_time_off_days)
+from fortune_companies
+where industry = "Technology"
+;
+
+
+# Assign all the companies in the Retail industry as an "excellent", "decent", "okay", or "not great" based on the average employee tenure. 
+select company_name,
+CASE 
+when avg_employee_tenure>=7 then "excellent"
+when avg_employee_tenure>=6 then "decent"
+when avg_employee_tenure>=5 then "okay"
+else "not great" end as "workplace_environment"
+from fortune_companies
+;
